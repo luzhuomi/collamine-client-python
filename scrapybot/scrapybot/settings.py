@@ -15,3 +15,12 @@ NEWSPIDER_MODULE = 'scrapybot.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'scrapybot (+http://www.yourdomain.com)'
+
+
+DOWNLOADER_MIDDLEWARES = {
+    'scrapybot.middlewares.collamine_middleware.CollaMineDownloadMiddleware': 543,
+}
+
+SPIDER_MIDDLEWARES = {
+    'scrapybot.middlewares.collamine_middleware.CollaMineUploadMiddleware': 543,	
+}

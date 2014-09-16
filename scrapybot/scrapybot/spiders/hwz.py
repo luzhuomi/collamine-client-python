@@ -22,9 +22,12 @@ class HwzSpider(CrawlSpider):
     When writing crawl spider rules, avoid using parse as callback, since the CrawlSpider uses the parse method itself to implement its logic. So if you override the parse method, the crawl spider will no longer work.
     """
     def parse_item(self, response):
+        source="orginal"
+        if ((response.flags) and ("collamine" in response.flags)):
+            source="collamine"
         i = ScrapybotItem(url=response.url,
             domain=self.allowed_domains[0],
-            source="orginal",
+            source=source,
             content=response.body.decode(response.encoding),
             crawled_date=datetime.datetime.now())
         i.save()
