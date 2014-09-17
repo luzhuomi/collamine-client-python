@@ -12,6 +12,7 @@ from dateutil.parser import parse
 class HwzSpider(CrawlSpider):
     name = "hwz"
     allowed_domains = ["hardwarezone.com.sg"]
+    domain = "www.hardwarezone.com" # for collamine upload
     start_urls = [
         "http://forums.hardwarezone.com.sg/current-affairs-lounge-17/"
     ]

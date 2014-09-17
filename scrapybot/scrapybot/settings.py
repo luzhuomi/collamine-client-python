@@ -24,3 +24,8 @@ DOWNLOADER_MIDDLEWARES = {
 SPIDER_MIDDLEWARES = {
     'scrapybot.middlewares.collamine_middleware.CollaMineUploadMiddleware': 543,	
 }
+
+
+COLLAMINE_DOWNLOAD_URL="http://127.0.0.1:9000/download/html/"
+
+COLLAMINE_UPLOAD_URL = "http://127.0.0.1:9000/upload/html/multipart/"
