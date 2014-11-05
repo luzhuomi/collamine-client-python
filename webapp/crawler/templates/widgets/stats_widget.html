@@ -1,3 +1,5 @@
+{% load static %}
+
 <div id="stats_widget" class="widget">
      <div><!-- FusionChart -->
      	       <div id="stats_fc_div"><div class="widget-initial-content"></div></div>
@@ -19,7 +21,7 @@ var stats_widget = (function () {
 		 var chartDataUrl  = "/crawler/stats/";
 
 		 this.chart = new FusionCharts(
-		      "{{settings.STATIC_URL}}fc/Pie2D.swf?ChartNoDataText=The selected filter settings yield no results.",
+		      "{% static "fc/Pie2D.swf?ChartNoDataText=The selected filter settings yield no results." %}",
 		      chart_id,
 		      chart_width,
 		      chart_height,

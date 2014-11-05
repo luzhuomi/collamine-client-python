@@ -11,7 +11,7 @@ import crawler.views
 
 urlpatterns = patterns('',
 	url(r'^$', 'crawler.views.index'),
-	url(r'^crawler/stats/$', 'crawler.views.stats'),
+	url(r'^crawler/stats/$', 'crawler.views.crawler_stats'),
     # Examples:
     # url(r'^$', 'webapp.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
