@@ -7,6 +7,9 @@ from crawler.models import HTML
 
 from django.db import connections
 from django.conf import settings
+from django.http import HttpResponse
+from django.template import RequestContext
+import json
 
 
 # Create your views here.
@@ -38,4 +41,17 @@ def crawler_stats(request):
 		  'results' : [ { 'name' : 'original', 'style' : '0000FF', 'count' : original_cnt },
 						{ 'name' : 'collamine', 'style' : '0000F0', 'count' : collamine_cnt }]
 		})
+
+
+def crawler_realtime_stats(request,since):
+	cursor = connections['default'].cursor()
+	cursor.execute("SELECT count(id) FROM crawler_html where source = 'collamine' AND crawled_date >= %s", [since]);
+	collamine_cnt = cursor.fetchall()[0][0]
+
+	cursor.execute("SELECT count(id) FROM crawler_html where source <> 'collamine' AND crawled_date >= %s", [since]);
+	original_cnt = cursor.fetchall()[0][0]
+	to_json = { 'original' : original_cnt,
+				'collamine' : collamine_cnt }
+		
+	return HttpResponse(json.dumps(to_json))
 

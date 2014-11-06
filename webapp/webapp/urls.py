@@ -12,6 +12,7 @@ import crawler.views
 urlpatterns = patterns('',
 	url(r'^$', 'crawler.views.index'),
 	url(r'^crawler/stats/$', 'crawler.views.crawler_stats'),
+	url(r'^crawler/realtime/stats/(?P<since>.*)$', 'crawler.views.crawler_realtime_stats'),
     # Examples:
     # url(r'^$', 'webapp.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),

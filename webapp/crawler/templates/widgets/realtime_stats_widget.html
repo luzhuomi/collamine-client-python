@@ -1,0 +1,112 @@
+{% load static %}
+
+<div id="realtime_stats_widget" class="widget">
+     <div><!-- FusionChart -->
+     	       <div id="realtime_stats_fc_div"><div class="widget-initial-content"></div></div>
+     </div>
+</div>
+<script type="text/javascript">
+var realtime_stats_widget = (function () {
+    var render_div_id = "realtime_stats_fc_div";
+    var chart_id = "realtime_stats_fc";
+    var chart_width = "600";
+    var chart_height = "450";
+    var interval = 10;
+    return {
+        initialized: false,
+		overlay: null,
+		contentLoaded: false,
+
+		init   : function () {
+			 this.chart = new FusionCharts({
+			 	id : chart_id,
+		        type: 'realtimeline',
+		        renderAt: render_div_id,
+		        width: chart_width,
+		        height: chart_height,
+		        dataFormat: 'json',
+		        dataSource: {
+		                    "chart": {
+		                        "caption": "Real-time crawler status monitor",
+		                        "subCaption": "",
+		                        "xAxisName": "Time",
+		                        "yAxisName": "Num of downloads",
+		                        "numberPrefix": "",
+		                        "refreshinterval": interval,
+		                        "yaxisminvalue": "0",
+		                        "yaxismaxvalue": "100",
+		                        "numdisplaysets": "10",
+		                        "labeldisplay": "rotate",
+		                        "showValues": "0",
+		                        "showRealTimeValue": "0",
+		                        "theme": "fint"
+		                    },
+		                    "categories": [{
+		                        
+		                    }],
+		                    "dataset": [{
+		                        	"seriesname" : "orginal",
+		                            "showvalues": "1"
+		                        },
+		                        {
+		                        	"seriesname" : "collamine",
+		                            "showvalues": "1"
+		                        }]
+		                },
+		                "events": {
+		                           "initialized": function (e) {
+		                               function addLeadingZero(num){
+		                                   return (num <= 9)? ("0"+num) : num;
+		                               }
+
+		                               function formatDate(dt) { // format a date into a string in format yyyy-MM-dd hh:mm:ss
+		                               		return dt.getFullYear() + "-" + 
+		                               			   addLeadingZero(dt.getMonth()) + "-" + // need to +1 because getMonth() returns (0,11)
+		                               			   addLeadingZero(dt.getDate()) + " " + 
+		                               			   addLeadingZero(dt.getHours()) + ":" +
+		                               			   addLeadingZero(dt.getMinutes()) + ":" +
+		                               			   addLeadingZero(dt.getSeconds());
+		                               }
+		                               function updateData() {
+		                                    // Get reference to the chart using its ID
+		                                    var chartRef = FusionCharts(chart_id),
+		                                        // We need to create a querystring format incremental update, containing
+		                                        // label in hh:mm:ss format
+		                                        // and a value (random).
+		                                        currDate = new Date(),
+		                                        label = addLeadingZero(currDate.getHours()) + ":" +
+		                                                addLeadingZero(currDate.getMinutes()) + ":" +
+		                                                addLeadingZero(currDate.getSeconds())
+		                                        $.getJSON("/crawler/realtime/stats/" + formatDate(currDate),  function(data){
+		                                        	    value = data.original + "|" + data.collamine
+		                                        	    // Build Data String in format &label=...&value=...
+		                                        	    strData = "&label=" + label 
+		                                        	                + "&value=" 
+		                                        	                + value;
+		                                        	// Feed it to chart.
+		                                        	console.log(value);
+		                                        	// console.log(formatDate(currDate));
+		                                        	chartRef.feedData(strData);
+		                                        })
+		                                        
+		                                }
+		                               var myVar = setInterval(function () {
+		                                   updateData();
+		                               }, interval * 1000);
+		                           }
+		                       }		                
+	     	 })
+			 this.chart.render(render_div_id);
+			 this.chart_initialized = true;
+			 this.prev_type = '3';
+		} // the callbacks
+    }
+})();
+// this seems to work too
+// realtime_stats_widget.update(); 
+FusionCharts.ready( function () { 
+	realtime_stats_widget.init();
+  }
+)
+
+</script>

@@ -9,23 +9,21 @@
 		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
 		<script src="{% static "js/jquery-1.9.0.min.js" %}"></script>
 		<script src="{% static "fc/js/fusioncharts.js" %}"></script> 
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-
-
 		<link rel="stylesheet" type="text/css" href="//ajax.googleapis.com/ajax/libs/yui/2.8.2/build/reset-fonts-grids/reset-fonts-grids.css" />
 		<link rel="stylesheet" type="text/css" href="//ajax.googleapis.com/ajax/libs/yui/2.8.2/build/base/base-min.css" />
-
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
 
 </head> 
 
 
 <body class="left-sidebar">
-A Python Crawler Running Along with CollaMine
+<h1>A Python Crawler Running Along with CollaMine<h1>
 
 <div class="yui-g">
 	<div class="yui-u first">
 	   {% include "widgets/stats_widget.html" %}
+    </div>    
+    <div class="yui-u">
+	   {% include "widgets/realtime_stats_widget.html" %}
     </div>    
 </div>
 

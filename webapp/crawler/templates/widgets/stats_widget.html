@@ -16,7 +16,7 @@ var stats_widget = (function () {
 		overlay: null,
 		contentLoaded: false,
 
-		update   : function () {
+		init   : function () {
 
 			 var chartDataUrl  = "/crawler/stats/";
 
@@ -37,7 +37,7 @@ var stats_widget = (function () {
 // this seems to work too
 // stats_widget.update(); 
 FusionCharts.ready( function () { 
-	stats_widget.update();
+	stats_widget.init();
   }
 )
 
