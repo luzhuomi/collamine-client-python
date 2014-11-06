@@ -13,30 +13,32 @@ var stats_widget = (function () {
     var chart_height = "450";
     return {
         initialized: false,
-	overlay: null,
-	contentLoaded: false,
+		overlay: null,
+		contentLoaded: false,
 
-	update   : function () {
+		update   : function () {
 
-		 var chartDataUrl  = "/crawler/stats/";
+			 var chartDataUrl  = "/crawler/stats/";
 
-		 this.chart = new FusionCharts(
-		      "{% static "fc/Pie2D.swf?ChartNoDataText=The selected filter settings yield no results." %}",
-		      chart_id,
-		      chart_width,
-		      chart_height,
-		      "0", "1"
-		      );
-		 this.chart.setDataURL(chartDataUrl);
-		 this.chart.render(render_div_id);
-		 this.chart_initialized = true;
-		 this.prev_type = '3';
-
-	}, // the callbacks
-	init     : function () {
-	}
+			 this.chart = new FusionCharts({
+		        type: 'pie2d',
+		        renderAt: render_div_id,
+		        width: chart_width,
+		        height: chart_height,
+		        dataFormat: 'xml'
+	     	 })
+			 this.chart.setDataURL(chartDataUrl);
+			 this.chart.render(render_div_id);
+			 this.chart_initialized = true;
+			 this.prev_type = '3';
+		} // the callbacks
     }
 })();
-stats_widget.init();
-stats_widget.update();
+// this seems to work too
+// stats_widget.update(); 
+FusionCharts.ready( function () { 
+	stats_widget.update();
+  }
+)
+
 </script>
