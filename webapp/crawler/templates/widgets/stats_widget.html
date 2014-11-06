@@ -29,15 +29,30 @@ var stats_widget = (function () {
 	     	 })
 			 this.chart.setDataURL(chartDataUrl);
 			 this.chart.render(render_div_id);
-			 this.chart_initialized = true;
+			 this.initialized = true;
 			 this.prev_type = '3';
-		} // the callbacks
+		}, // the callbacks
+
+		update : function () {
+			if (!stats_widget.initialized) 
+			{
+				stats_widget();
+			}
+			else 
+			{
+				// console.log("re-rendering");
+				stats_widget.chart.render(render_div_id);
+			}
+		}
     }
 })();
 // this seems to work too
 // stats_widget.update(); 
+
 FusionCharts.ready( function () { 
+	var interval = 10; // seconds
 	stats_widget.init();
+	setInterval(stats_widget.update, interval * 1000 );
   }
 )
 
