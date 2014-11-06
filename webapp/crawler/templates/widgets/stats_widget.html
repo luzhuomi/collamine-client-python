@@ -36,12 +36,13 @@ var stats_widget = (function () {
 		update : function () {
 			if (!stats_widget.initialized) 
 			{
-				stats_widget();
+				stats_widget.init();
 			}
 			else 
 			{
-				// console.log("re-rendering");
-				stats_widget.chart.render(render_div_id);
+				console.log("re-rendering");
+				stats_widget.init();
+				// stats_widget.chart.render(render_div_id);
 			}
 		}
     }

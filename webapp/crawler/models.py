@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class HTML(models.Model):
-	url     = models.CharField(max_length=512)
+	url     = models.CharField(max_length=255,unique=True)
 	domain  = models.CharField(max_length=512)
 	content = models.TextField()
 	source  = models.CharField(max_length=512)

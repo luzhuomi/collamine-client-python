@@ -8,6 +8,8 @@ from scrapybot.utils import normalizeFriendlyDate
 import datetime
 from dateutil.parser import parse
 
+from django.utils import timezone
+
 
 class HwzSpider(CrawlSpider):
     name = "hwz"
@@ -30,5 +32,5 @@ class HwzSpider(CrawlSpider):
             domain=self.allowed_domains[0],
             source=source,
             content=response.body.decode(response.encoding),
-            crawled_date=datetime.datetime.now())
+            crawled_date=timezone.now())
         i.save()

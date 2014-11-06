@@ -1,4 +1,4 @@
-<chart showAboutMenuItem="0" palette="2" caption="Download distribution" showLabels="1" showvalues="1" decimals="0" numberPrefix="" legendPosition="RIGHT">
+<chart showAboutMenuItem="0" palette="2" caption="Download distribution" showLabels="1" showvalues="1" decimals="0" numberPrefix="" legendPosition="RIGHT" animation="0">
 <categories><category label="Counts" /></categories>
 {% for i in results %}
 <set label="{{i.name}}" commentedcolor="{{i.style}}" showValues="1" value="{{i.count}}" />

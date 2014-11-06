@@ -34,7 +34,7 @@ var realtime_stats_widget = (function () {
 		                        "numberPrefix": "",
 		                        "refreshinterval": interval,
 		                        "yaxisminvalue": "0",
-		                        "yaxismaxvalue": "100",
+		                        "yaxismaxvalue": "10",
 		                        "numdisplaysets": "10",
 		                        "labeldisplay": "rotate",
 		                        "showValues": "0",
@@ -60,12 +60,12 @@ var realtime_stats_widget = (function () {
 		                               }
 
 		                               function formatDate(dt) { // format a date into a string in format yyyy-MM-dd hh:mm:ss
-		                               		return dt.getFullYear() + "-" + 
-		                               			   addLeadingZero(dt.getMonth()) + "-" + // need to +1 because getMonth() returns (0,11)
-		                               			   addLeadingZero(dt.getDate()) + " " + 
-		                               			   addLeadingZero(dt.getHours()) + ":" +
-		                               			   addLeadingZero(dt.getMinutes()) + ":" +
-		                               			   addLeadingZero(dt.getSeconds());
+		                               		return dt.getUTCFullYear() + "-" + 
+		                               			   addLeadingZero(dt.getMonth()+1) + "-" + // need to +1 because getMonth() returns (0,11)
+		                               			   addLeadingZero(dt.getUTCDate()) + " " + 
+		                               			   addLeadingZero(dt.getUTCHours()) + ":" +
+		                               			   addLeadingZero(dt.getUTCMinutes()) + ":" +
+		                               			   addLeadingZero(dt.getUTCSeconds());
 		                               }
 		                               function updateData() {
 		                                    // Get reference to the chart using its ID
