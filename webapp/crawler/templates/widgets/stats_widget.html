@@ -18,16 +18,17 @@ var stats_widget = (function () {
 
 		init   : function () {
 
-			 var chartDataUrl  = "/crawler/stats/";
+			 var chartDataUrl  = "/crawler/stats/json/";
 
 			 this.chart = new FusionCharts({
 		        type: 'pie2d',
 		        renderAt: render_div_id,
 		        width: chart_width,
 		        height: chart_height,
-		        dataFormat: 'xml'
+		        dataFormat: 'json'
 	     	 })
-			 this.chart.setDataURL(chartDataUrl);
+			 // this.chart.setDataURL(chartDataUrl);
+			 this.chart.setJSONUrl(chartDataUrl);
 			 this.chart.render(render_div_id);
 			 this.initialized = true;
 			 this.prev_type = '3';

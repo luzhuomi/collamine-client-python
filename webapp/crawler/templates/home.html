@@ -1,0 +1,31 @@
+{% load static %}
+<html>
+<head>
+<title>CollaMine Client in Python</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="viewport" content="width=1040" />
+		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+		<script src="{% static "js/jquery-1.9.0.min.js" %}"></script>
+		<script src="{% static "fc/js/fusioncharts.js" %}"></script> 
+		<link rel="stylesheet" type="text/css" href="//ajax.googleapis.com/ajax/libs/yui/2.8.2/build/reset-fonts-grids/reset-fonts-grids.css" />
+		<link rel="stylesheet" type="text/css" href="//ajax.googleapis.com/ajax/libs/yui/2.8.2/build/base/base-min.css" />
+
+</head> 
+
+
+<body class="left-sidebar">
+<h1>A Python Crawler Running Along with CollaMine<h1>
+
+<div class="yui-g">
+	<div class="yui-u first">
+	   {% include "widgets/stats_widget.html" %}
+    </div>    
+    <div class="yui-u">
+	   {% include "widgets/realtime_stats_widget.html" %}
+    </div>    
+</div>
+
+</body>
+</html>

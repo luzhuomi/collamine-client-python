@@ -1,0 +1,201 @@
+{% load static %}
+<html>
+<head>
+<title>CollaMine Client in Python</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=1040" />
+
+        <link href="static/css/stylesheet.css" rel="stylesheet" />
+        <!-- Bootstrap Core CSS -->
+        <link href="static/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="static/css/sb-admin.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link href="static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <link href="static/css/stylesheet.css" rel="stylesheet">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+        <script src="{% static "js/jquery.js" %}"></script>
+        <script src="{% static "js/jsclock.js" %}"></script>
+
+        <script src="{% static "fc/js/fusioncharts.js" %}"></script> 
+        
+        <!-- Bootstrap Core JavaScript -->
+        <script src="{% static "js/bootstrap.min.js" %}"></script>
+
+        <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript">
+            google.load("visualization", "1", {packages:["corechart"]});
+            google.setOnLoadCallback(drawChart);
+            function drawChart() {
+               
+                // Google Visualization stuff goes here
+                $.getJSON( "/crawler/stats/piejson/", function( data ) {
+                    // var dataTable = new google.visualization.DataTable(data);
+                     
+                    // console.log(data);    
+                   
+
+                   
+                    var dt = new google.visualization.DataTable(data);
+
+                   
+                   
+                   var options = {
+                        title: 'Download Distribution',
+                        is3D: true,
+                    };
+
+                    var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+                    chart.draw(dt, options);
+                });   
+            }
+
+            setInterval(function() {
+                drawChart();
+            }, 10000); 
+        </script>
+
+        <!-- Datatable Charts -->
+        <script type="text/javascript">
+          google.load("visualization", "1", {packages:["table"]});
+          google.setOnLoadCallback(drawTable);
+
+          function drawTable() {
+             
+            // Google Visualization stuff goes here
+            $.getJSON( "/crawler/stats/Rurl/", function( data ) {
+                   
+                var dataTable = new google.visualization.  DataTable(data);
+                   
+                var table = new google.visualization.Table(document.getElementById('table_div'));
+
+                table.draw(dataTable, {showRowNumber: true});
+            
+            });   
+          }
+
+          setInterval(function() {
+                drawTable();
+            }, 10000); 
+        </script>
+</head> 
+
+<body>
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="\">CollaMine</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <div class="clock">
+                    <div id="Date"></div>
+                    <ul class="test">
+                        <li id="hours"> </li>
+                        <li id="point">:</li>
+                        <li id="min"> </li>
+                        <li id="point">:</li>
+                        <li id="sec"> </li>
+                        <li id="ampm"><li>
+                    </ul>
+                </div>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li class="active">
+                        <a href="/"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="/piechart"><i class="fa fa-pie-chart"></i> Pie Chart</a>
+                    </li>
+                    <li>
+                        <a href="/graphchart"><i class="fa fa-fw fa-bar-chart-o"></i> Graph Chart</a>
+                    </li>
+                    <li style="color:White;border-top:1px solid white;margin-top:10px;">
+                        CollaMine Copyright &copy;2015
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+         <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Pie Chart <small>Statistics Overview</small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li class="active">
+                                <i class="fa fa-pie-chart"></i> Pie Chart
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Pie Chart</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div id="piechart_3d" style="width:800px; height: 500px; margin-left:400px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-arrow-circle-right fa-fw"></i> Latest Urls</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div id="table_div"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+    
+    </div>
+    <!-- /#wrapper -->
+
+</body>
+</html>

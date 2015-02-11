@@ -1,0 +1,36 @@
+
+.clock
+{
+    width:300px;
+    color:#fff; 
+}
+
+#Date 
+{ 
+    margin-left:50px;
+    font-family:'BebasNeueRegular', Arial, Helvetica, sans-serif; 
+    font-size:18px; 
+    text-shadow:0 0 5px #00c6ff; 
+}
+
+.test
+{ 
+    margin-left:-110px;
+    width:500px; 
+    list-style:none; text-align:center; 
+}
+
+.test li 
+{
+    display:inline; 
+    font-size:18px; 
+    font-family:'BebasNeueRegular', Arial, Helvetica, sans-serif; 
+    text-shadow:0 0 5px #00c6ff;
+}
+
+#point 
+{ 
+    position:relative; -moz-animation:mymove 1s ease infinite; -webkit-animation:mymove 1s ease infinite; 
+    padding-left:10px; 
+    padding-right:10px; 
+}

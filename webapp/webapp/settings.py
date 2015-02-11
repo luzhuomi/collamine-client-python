@@ -71,9 +71,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'djangocrawler',
         'USER': 'root',
-        'PASSWORD': 'root',
+        'PASSWORD': 'a1b2c3d4e5',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-        'PORT': '8889',
+        'PORT': '3306',
     }
 }
 
