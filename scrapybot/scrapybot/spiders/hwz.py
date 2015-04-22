@@ -17,11 +17,13 @@ class HwzSpider(CrawlSpider):
     allowed_domains = ["hardwarezone.com.sg"]
     domain = "www.hardwarezone.com" # for collamine upload
     start_urls = [
-        "http://forums.hardwarezone.com.sg/current-affairs-lounge-17/"
+        "http://forums.hardwarezone.com.sg/current-affairs-lounge-17/",
+	"http://forums.hardwarezone.com.sg/money-mind-210/"
     ]
     
     rules = (
         Rule(SgmlLinkExtractor(allow=('current\-affairs\-lounge\-17/.*\.html', )), callback='parse_item', follow=True),
+	Rule(SgmlLinkExtractor(allow=('money\-mind\-210/.*\.html', )), callback='parse_item', follow=True),
     ) 
 
     """
