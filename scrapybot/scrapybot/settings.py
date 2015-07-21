@@ -26,6 +26,6 @@ SPIDER_MIDDLEWARES = {
 }
 
 
-COLLAMINE_DOWNLOAD_URL="http://172.31.22.137:9001/download/html/"
+COLLAMINE_DOWNLOAD_URL="http://172.31.22.135:9001/download/html/"
 
-COLLAMINE_UPLOAD_URL = "http://172.31.22.137:9001/upload/html/multipart/"
+COLLAMINE_UPLOAD_URL = "http://172.31.22.135:9001/upload/html/multipart/"
