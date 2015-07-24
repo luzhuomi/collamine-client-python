@@ -10,7 +10,10 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.template import RequestContext
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
+
+from django.utils import timezone
+
 import json
 
 
@@ -103,14 +106,15 @@ def crawler_stats_Piejson(request):
 
   		"rows": [
 	        {"c":[{"v":"Original","f":None},{"v":original_cnt,"f":None}]},
-	        {"c":[{"v":"Collamine","f":None},{"v":collamine_cnt,"f":None}]},
+	        {"c":[{"v":"CollaMine","f":None},{"v":collamine_cnt,"f":None}]},
       	]
 
 	}
 
 	return HttpResponse(json.dumps(pie_data), content_type="application/json")
 
-def crawler_stats_Chartjson(request, since):
+def crawler_stats_Chartjson(request):
+	since = (timezone.now()-timedelta(0,10)).strftime("%Y-%m-%d %H:%M:%S")
 	cursor = connections['default'].cursor()
 	cursor.execute("SELECT count(id) FROM crawler_html where source = 'collamine' AND crawled_date >= %s", [since]);
 	collamine_cnt = cursor.fetchall()[0][0]
