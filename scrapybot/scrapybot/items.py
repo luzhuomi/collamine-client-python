@@ -6,7 +6,10 @@
 # http://doc.scrapy.org/en/latest/topics/items.html
 
 import scrapy
-from scrapy.contrib.djangoitem import DjangoItem
+if scrapy.version_info[0:2] < (1,1):
+        from scrapy.contrib.djangoitem import DjangoItem
+else:
+        from scrapy_djangoitem import DjangoItem # sudo easy_install scrapy_djangoitem
 from scrapy.item import Field
 
 from crawler.models import  HTML

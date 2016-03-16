@@ -10,6 +10,9 @@
 
 BOT_NAME = 'scrapybot'
 
+from django.core.wsgi import get_wsgi_application
+application = get_wsgi_application()
+
 SPIDER_MODULES = ['scrapybot.spiders']
 NEWSPIDER_MODULE = 'scrapybot.spiders'
 

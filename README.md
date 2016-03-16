@@ -3,6 +3,12 @@ collamine-client-python
 
 Sample client for Collamine in Python
 
+easy_install django
+easy_install scrapy
+easy_install scrapy_djangoitem
+easy_install dateutils
+easy_install requests
+
 
 run 
 ========================

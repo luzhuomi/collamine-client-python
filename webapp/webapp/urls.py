@@ -11,7 +11,7 @@ import crawler.views
 
 urlpatterns = patterns('',
 	url(r'^$', 'crawler.views.index'),
-	url(r'^/$', 'crawler.views.index'),
+	# url(r'^/$', 'crawler.views.index'),
 	url(r'^piechart$', 'crawler.views.pie_chart'),
 	url(r'^graphchart$', 'crawler.views.graph_chart'),
 	url(r'^home$', 'crawler.views.home'),
